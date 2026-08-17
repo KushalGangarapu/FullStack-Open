@@ -77,12 +77,19 @@ const App = () => {
             setNewNumber('')
             showNotification(`Updated ${returnedPerson.name}'s number`, 'success')
           })
-          .catch(_error => {
-            showNotification(
-              `Information of ${existingPerson.name} has already been removed from server`,
-              'error'
-            )
-            setPersons(persons.filter(person => person.id !== existingPerson.id))
+          .catch(error => {
+            if (error.response && error.response.status === 404) {
+              showNotification(
+                `Information of ${existingPerson.name} has already been removed from server`,
+                'error'
+              )
+              setPersons(persons.filter(person => person.id !== existingPerson.id))
+            } else {
+              showNotification(
+                error.response?.data?.error || `Failed to update ${existingPerson.name}`,
+                'error'
+              )
+            }
           })
       }
       return

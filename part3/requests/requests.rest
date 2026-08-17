@@ -1,0 +1,90 @@
+### 3.1 & 3.13: Get all persons
+GET http://localhost:3001/api/persons
+
+### 3.2 & 3.18: Get info page
+GET http://localhost:3001/info
+
+### 3.3 & 3.18: Get single person by valid ID
+GET http://localhost:3001/api/persons/64b58e72f321456789abcdef
+
+### 3.3: Get non-existing person (404)
+GET http://localhost:3001/api/persons/64b58e72f321456789abcfff
+
+### 3.16: Get person with malformatted ID (400)
+GET http://localhost:3001/api/persons/invalid-id-format
+
+### 3.5 & 3.14: Create a new person
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Linus Torvalds",
+  "number": "040-1234567"
+}
+
+### 3.6: Create person with missing name (400)
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "number": "040-1234567"
+}
+
+### 3.6: Create person with missing number (400)
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Grace Hopper"
+}
+
+### 3.19: Create person with name shorter than 3 characters (Validation Error 400)
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Al",
+  "number": "040-1234567"
+}
+
+### 3.20: Create person with invalid number format (Validation Error 400)
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Alan Turing",
+  "number": "1234567"
+}
+
+### 3.20: Create person with invalid hyphen format (Validation Error 400)
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Alan Turing",
+  "number": "1-22334455"
+}
+
+### 3.20: Create person with multiple hyphens (Validation Error 400)
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Alan Turing",
+  "number": "10-22-334455"
+}
+
+### 3.17: Update existing person number
+PUT http://localhost:3001/api/persons/64b58e72f321456789abcdef
+Content-Type: application/json
+
+{
+  "name": "Linus Torvalds",
+  "number": "050-9876543"
+}
+
+### 3.4 & 3.15: Delete a person
+DELETE http://localhost:3001/api/persons/64b58e72f321456789abcdef
+
+### Unknown endpoint (404)
+GET http://localhost:3001/api/unknown-path
