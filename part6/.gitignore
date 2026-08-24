@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+
+# production builds
+dist/
+dist-ssr/
+build/
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# test results and playwright reports
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# env files
+.env
+.env.local
+.env.*.local
+
+# editor/OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.claude
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.local
